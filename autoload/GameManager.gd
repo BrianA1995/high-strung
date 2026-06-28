@@ -9,6 +9,7 @@ var current_mode: GameMode = GameMode.NONE
 var active_players: Dictionary = {}
 var score: int = 0
 var current_floor: int = 0
+var player_count: int = 2
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS

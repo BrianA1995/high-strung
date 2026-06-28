@@ -24,10 +24,11 @@ func _ready() -> void:
 	_clean_bar.custom_minimum_size = Vector2(160, 16)
 	vbox.add_child(_clean_bar)
 
-	for i in 2:
+	const SOAP_COLORS := [Color.DODGER_BLUE, Color.TOMATO, Color(0.2, 0.8, 0.2), Color(1.0, 0.85, 0.1)]
+	for i in 4:
 		var lbl := Label.new()
 		lbl.text = "P%d Soap: ||||||||" % i
-		lbl.modulate = Color.DODGER_BLUE if i == 0 else Color.TOMATO
+		lbl.modulate = SOAP_COLORS[i]
 		vbox.add_child(lbl)
 		_soap_labels.append(lbl)
 

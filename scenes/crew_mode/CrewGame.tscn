@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://b187icr025whv"]
+[gd_scene format=3 uid="uid://b187icr025whv"]
 
 [ext_resource type="Script" uid="uid://kgvxqg5vb1w4" path="res://scenes/crew_mode/CrewGame.gd" id="1_ehnwn"]
 [ext_resource type="Script" uid="uid://bprtiywyvnceq" path="res://scenes/crew_mode/scaffold/Scaffold.gd" id="2_7isoa"]
@@ -57,102 +57,81 @@ albedo_color = Color(0.1, 0.7, 0.3, 1)
 [sub_resource type="BoxMesh" id="BoxMesh_bd6eg"]
 size = Vector3(0.5, 0.5, 0.5)
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_453mm"]
-radius = 0.35
-height = 1.8
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_l3c03"]
-radius = 0.35
-height = 1.8
-
-[node name="CrewGame" type="Node3D"]
+[node name="CrewGame" type="Node3D" unique_id=1842279129]
 script = ExtResource("1_ehnwn")
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
+[node name="Sun" type="DirectionalLight3D" parent="." unique_id=165244019]
 transform = Transform3D(0.877583, -0.33887, 0.33914, 0, 0.707388, 0.706825, -0.479426, -0.620297, 0.620792, 0, 0, 0)
 light_energy = 1.2
 
-[node name="Ground" type="StaticBody3D" parent="."]
+[node name="Ground" type="StaticBody3D" parent="." unique_id=2059734773]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
 
-[node name="GroundShape" type="CollisionShape3D" parent="Ground"]
+[node name="GroundShape" type="CollisionShape3D" parent="Ground" unique_id=1774210255]
 shape = SubResource("BoxShape3D_3i2hh")
 
-[node name="Scaffold" type="RigidBody3D" parent="."]
+[node name="Scaffold" type="RigidBody3D" parent="." unique_id=1075674726]
 script = ExtResource("2_7isoa")
-angular_damping = 1.895
-tilt_sensitivity = 1.015
+angular_damping = 2.515
+tilt_sensitivity = -0.035
 slide_friction_threshold = 19.54
 
-[node name="PlatformCollision" type="CollisionShape3D" parent="Scaffold"]
+[node name="PlatformCollision" type="CollisionShape3D" parent="Scaffold" unique_id=1496868393]
 shape = SubResource("BoxShape3D_ycb7x")
 
-[node name="PlatformMesh" type="MeshInstance3D" parent="Scaffold"]
+[node name="PlatformMesh" type="MeshInstance3D" parent="Scaffold" unique_id=686738982]
 material_override = SubResource("StandardMaterial3D_3rn01")
 mesh = SubResource("BoxMesh_lv6lr")
 
-[node name="RailFront" type="MeshInstance3D" parent="Scaffold"]
+[node name="RailFront" type="MeshInstance3D" parent="Scaffold" unique_id=2083143848]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -1.1)
 material_override = SubResource("StandardMaterial3D_wdj1w")
 mesh = SubResource("BoxMesh_bnsuc")
 
-[node name="RailBack" type="MeshInstance3D" parent="Scaffold"]
+[node name="RailBack" type="MeshInstance3D" parent="Scaffold" unique_id=1958997077]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 1.1)
 material_override = SubResource("StandardMaterial3D_sa21h")
 mesh = SubResource("BoxMesh_7s8qi")
 
-[node name="SlidingBox1" type="RigidBody3D" parent="."]
+[node name="SlidingBox1" type="RigidBody3D" parent="." unique_id=1141313134]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.75, 0.3)
 
-[node name="BoxCollision" type="CollisionShape3D" parent="SlidingBox1"]
+[node name="BoxCollision" type="CollisionShape3D" parent="SlidingBox1" unique_id=1598127214]
 shape = SubResource("BoxShape3D_seu06")
 
-[node name="BoxMesh" type="MeshInstance3D" parent="SlidingBox1"]
+[node name="BoxMesh" type="MeshInstance3D" parent="SlidingBox1" unique_id=13886635]
 material_override = SubResource("StandardMaterial3D_y7wb4")
 mesh = SubResource("BoxMesh_52lma")
 
-[node name="SlidingBox2" type="RigidBody3D" parent="."]
+[node name="SlidingBox2" type="RigidBody3D" parent="." unique_id=664991972]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.75, -0.2)
 
-[node name="BoxCollision" type="CollisionShape3D" parent="SlidingBox2"]
+[node name="BoxCollision" type="CollisionShape3D" parent="SlidingBox2" unique_id=1571763664]
 shape = SubResource("BoxShape3D_pct5r")
 
-[node name="BoxMesh" type="MeshInstance3D" parent="SlidingBox2"]
+[node name="BoxMesh" type="MeshInstance3D" parent="SlidingBox2" unique_id=696716470]
 material_override = SubResource("StandardMaterial3D_rvm6x")
 mesh = SubResource("BoxMesh_ashc5")
 
-[node name="SlidingBox3" type="RigidBody3D" parent="."]
+[node name="SlidingBox3" type="RigidBody3D" parent="." unique_id=1080219188]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.4)
 
-[node name="BoxCollision" type="CollisionShape3D" parent="SlidingBox3"]
+[node name="BoxCollision" type="CollisionShape3D" parent="SlidingBox3" unique_id=418637032]
 shape = SubResource("BoxShape3D_movbv")
 
-[node name="BoxMesh" type="MeshInstance3D" parent="SlidingBox3"]
+[node name="BoxMesh" type="MeshInstance3D" parent="SlidingBox3" unique_id=296749896]
 material_override = SubResource("StandardMaterial3D_dna8m")
 mesh = SubResource("BoxMesh_bd6eg")
 
-[node name="SpawnPoint" type="Marker3D" parent="."]
+[node name="SpawnPoint" type="Marker3D" parent="." unique_id=771794494]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=2022261667]
 transform = Transform3D(1, 0, 0, 0, 0.857167, 0.515038, 0, -0.515038, 0.857167, 0, 3, 5)
 current = true
 script = ExtResource("3_efpxs")
 
-[node name="Player" parent="." instance=ExtResource("3_0mnjr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
+[node name="Player" parent="." unique_id=293414516 instance=ExtResource("3_0mnjr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0.3)
 
-[node name="HUD" parent="." instance=ExtResource("4_efpxs")]
-
-[node name="Player2" parent="." instance=ExtResource("3_0mnjr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
-player_index = 1
-player_color = Color(1, 0.388, 0.278, 1)
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Player2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-shape = SubResource("CapsuleShape3D_453mm")
-
-[node name="Body2" type="MeshInstance3D" parent="Player2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
-mesh = SubResource("CapsuleMesh_l3c03")
+[node name="HUD" parent="." unique_id=69519169 instance=ExtResource("4_efpxs")]
