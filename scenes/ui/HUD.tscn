@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://biyt6fr5hdqhy"]
+
+[ext_resource type="Script" uid="uid://dqydkherubfvi" path="res://scenes/ui/HUD.gd" id="1_kw0id"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_kw0id")
+
+[node name="VBox" type="VBoxContainer" parent="."]
+
+[node name="TiltLabel" type="Label" parent="VBox"]
+layout_mode = 2
+text = "Tilt: 0.0°"
+
+[node name="TiltBar" type="ProgressBar" parent="VBox"]
+layout_mode = 2
+max_value = 45.0
+
+[node name="StateLabel" type="Label" parent="VBox"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+text = "SAFE"
+
+[node name="DebugLabel" type="Label" parent="VBox"]
+layout_mode = 2

@@ -1,0 +1,157 @@
+[gd_scene load_steps=26 format=3 uid="uid://b187icr025whv"]
+
+[ext_resource type="Script" uid="uid://kgvxqg5vb1w4" path="res://scenes/crew_mode/CrewGame.gd" id="1_ehnwn"]
+[ext_resource type="Script" uid="uid://bprtiywyvnceq" path="res://scenes/crew_mode/scaffold/Scaffold.gd" id="2_7isoa"]
+[ext_resource type="PackedScene" uid="uid://chej6edwdejuv" path="res://entities/player/Player.tscn" id="3_0mnjr"]
+[ext_resource type="Script" uid="uid://ryn8ofnee7e" path="res://scenes/crew_mode/SharedCamera.gd" id="3_efpxs"]
+[ext_resource type="PackedScene" uid="uid://biyt6fr5hdqhy" path="res://scenes/ui/HUD.tscn" id="4_efpxs"]
+[ext_resource type="Script" uid="uid://c57vq2m876wuw" path="res://entities/player/Player.gd" id="6_3i2hh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3i2hh"]
+size = Vector3(200, 1, 200)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ycb7x"]
+size = Vector3(8, 0.25, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3rn01"]
+albedo_color = Color(0.55, 0.55, 0.58, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_lv6lr"]
+size = Vector3(8, 0.25, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wdj1w"]
+albedo_color = Color(0.8, 0.6, 0, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bnsuc"]
+size = Vector3(8, 0.1, 0.08)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sa21h"]
+albedo_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7s8qi"]
+size = Vector3(8, 0.1, 0.08)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_seu06"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y7wb4"]
+albedo_color = Color(1, 0.35, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_52lma"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pct5r"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_rvm6x"]
+albedo_color = Color(0.9, 0.85, 0.1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ashc5"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_movbv"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dna8m"]
+albedo_color = Color(0.1, 0.7, 0.3, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bd6eg"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_453mm"]
+radius = 0.35
+height = 1.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_l3c03"]
+radius = 0.35
+height = 1.8
+
+[node name="CrewGame" type="Node3D"]
+script = ExtResource("1_ehnwn")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.877583, -0.33887, 0.33914, 0, 0.707388, 0.706825, -0.479426, -0.620297, 0.620792, 0, 0, 0)
+light_energy = 1.2
+
+[node name="Ground" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -20, 0)
+
+[node name="GroundShape" type="CollisionShape3D" parent="Ground"]
+shape = SubResource("BoxShape3D_3i2hh")
+
+[node name="Scaffold" type="RigidBody3D" parent="."]
+script = ExtResource("2_7isoa")
+
+[node name="PlatformCollision" type="CollisionShape3D" parent="Scaffold"]
+shape = SubResource("BoxShape3D_ycb7x")
+
+[node name="PlatformMesh" type="MeshInstance3D" parent="Scaffold"]
+material_override = SubResource("StandardMaterial3D_3rn01")
+mesh = SubResource("BoxMesh_lv6lr")
+
+[node name="RailFront" type="MeshInstance3D" parent="Scaffold"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, -1.1)
+material_override = SubResource("StandardMaterial3D_wdj1w")
+mesh = SubResource("BoxMesh_bnsuc")
+
+[node name="RailBack" type="MeshInstance3D" parent="Scaffold"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 1.1)
+material_override = SubResource("StandardMaterial3D_sa21h")
+mesh = SubResource("BoxMesh_7s8qi")
+
+[node name="SlidingBox1" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.75, 0.3)
+
+[node name="BoxCollision" type="CollisionShape3D" parent="SlidingBox1"]
+shape = SubResource("BoxShape3D_seu06")
+
+[node name="BoxMesh" type="MeshInstance3D" parent="SlidingBox1"]
+material_override = SubResource("StandardMaterial3D_y7wb4")
+mesh = SubResource("BoxMesh_52lma")
+
+[node name="SlidingBox2" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.75, -0.2)
+
+[node name="BoxCollision" type="CollisionShape3D" parent="SlidingBox2"]
+shape = SubResource("BoxShape3D_pct5r")
+
+[node name="BoxMesh" type="MeshInstance3D" parent="SlidingBox2"]
+material_override = SubResource("StandardMaterial3D_rvm6x")
+mesh = SubResource("BoxMesh_ashc5")
+
+[node name="SlidingBox3" type="RigidBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0.4)
+
+[node name="BoxCollision" type="CollisionShape3D" parent="SlidingBox3"]
+shape = SubResource("BoxShape3D_movbv")
+
+[node name="BoxMesh" type="MeshInstance3D" parent="SlidingBox3"]
+material_override = SubResource("StandardMaterial3D_dna8m")
+mesh = SubResource("BoxMesh_bd6eg")
+
+[node name="SpawnPoint" type="Marker3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.832052, 0.554698, 0, -0.554698, 0.832052, 0, 8, 12)
+current = true
+script = ExtResource("3_efpxs")
+
+[node name="Player" parent="." instance=ExtResource("3_0mnjr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 1.5, 0)
+
+[node name="HUD" parent="." instance=ExtResource("4_efpxs")]
+
+[node name="Player2" type="CharacterBody3D" parent="." instance=ExtResource("3_0mnjr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1.5, 0)
+script = ExtResource("6_3i2hh")
+player_index = 1
+player_color = Color(1, 0.388, 0.278, 1)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("CapsuleShape3D_453mm")
+
+[node name="Body" type="MeshInstance3D" parent="Player2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("CapsuleMesh_l3c03")
