@@ -31,6 +31,7 @@ var _tilt_angle: float = 0.0
 var _tilt_state: StringName = &"SAFE"
 var _anchor_positions: Array[Vector3] = []
 var _corner_offsets: Array[Vector3] = []
+var _cable_meshes: Array = []
 
 func _ready() -> void:
 	add_to_group("scaffold")
@@ -44,6 +45,21 @@ func _ready() -> void:
 		Vector3( half_width, 0.0,  half_depth),
 	]
 	_setup_anchors()
+	_create_cable_visuals()
+
+func _create_cable_visuals() -> void:
+	var mat := StandardMaterial3D.new()
+	mat.albedo_color = Color(0.55, 0.48, 0.32)
+	for i in 4:
+		var mi := MeshInstance3D.new()
+		var cyl := CylinderMesh.new()
+		cyl.top_radius    = 0.03
+		cyl.bottom_radius = 0.03
+		cyl.height        = 1.0
+		mi.mesh = cyl
+		mi.material_override = mat
+		add_child(mi)
+		_cable_meshes.append(mi)
 
 func _setup_anchors() -> void:
 	_anchor_positions.clear()
@@ -58,6 +74,24 @@ func _physics_process(_delta: float) -> void:
 	_apply_cable_forces()
 	_apply_weight_torque()
 	_update_tilt()
+	_update_cable_visuals()
+
+func _update_cable_visuals() -> void:
+	for i in _corner_offsets.size():
+		var mi: MeshInstance3D = _cable_meshes[i]
+		var corner := global_position + global_basis * _corner_offsets[i]
+		var anchor := _anchor_positions[i]
+		var diff   := anchor - corner
+		var length := diff.length()
+		if length < 0.01:
+			continue
+		var y_axis := diff / length
+		var x_axis := y_axis.cross(Vector3.FORWARD if abs(y_axis.dot(Vector3.RIGHT)) > 0.9 else Vector3.RIGHT).normalized()
+		var z_axis := x_axis.cross(y_axis).normalized()
+		mi.global_transform = Transform3D(
+			Basis(x_axis, y_axis * length, z_axis),
+			(corner + anchor) * 0.5
+		)
 
 func _apply_cable_forces() -> void:
 	for i in _corner_offsets.size():

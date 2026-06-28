@@ -30,7 +30,7 @@ func _setup_building() -> void:
 	var wall := StaticBody3D.new()
 	wall.name = "BuildingWall"
 	add_child(wall)
-	wall.global_position = Vector3(0.0, 0.7, -3.15)
+	wall.global_position = Vector3(0.0, 0.7, -2.65)
 
 	var wall_col := CollisionShape3D.new()
 	var wall_shape := BoxShape3D.new()
@@ -53,7 +53,7 @@ func _setup_building() -> void:
 	var rows := 2
 	var spacing_x := 2.2
 	var spacing_y := 1.5
-	var grid_origin := Vector3(-spacing_x, -0.35, -3.0)
+	var grid_origin := Vector3(-spacing_x, -0.35, -2.5)
 
 	for row in rows:
 		for col in cols:

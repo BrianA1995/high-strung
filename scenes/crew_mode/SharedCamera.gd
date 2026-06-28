@@ -1,10 +1,10 @@
 extends Camera3D
 
-@export var base_height: float = 8.0
-@export var base_distance: float = 12.0
+@export var base_height: float = 4.0
+@export var base_distance: float = 5.5
 @export var min_zoom: float = 1.0
-@export var max_zoom: float = 2.5
-@export var zoom_padding: float = 3.0
+@export var max_zoom: float = 2.0
+@export var zoom_padding: float = 2.0
 @export var lerp_speed: float = 3.5
 
 func _process(delta: float) -> void:
@@ -32,4 +32,4 @@ func _process(delta: float) -> void:
 
 	var target_pos := centroid + Vector3(0.0, base_height * zoom, base_distance * zoom)
 	global_position = global_position.lerp(target_pos, lerp_speed * delta)
-	look_at(centroid + Vector3(0.0, 0.5, 0.0), Vector3.UP)
+	look_at(centroid + Vector3(0.0, 0.5, -1.2), Vector3.UP)
